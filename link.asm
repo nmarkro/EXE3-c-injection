@@ -69,8 +69,8 @@ UpdateRngIndex:
 	mov r0, r7
 	bl hooked_rng
 
-    // overwritten normal RNG function
-    ldr r0, [r7]
+	// overwritten normal RNG function
+	ldr r0, [r7]
 	ldr	r1,=0x873CA9E5
 	lsl	r2,r0,0x1
 	lsr	r3,r0,0x1F
@@ -78,22 +78,22 @@ UpdateRngIndex:
 	add	r0,0x1
 	eor	r0,r1
 
-    pop r15
+	pop r15
 
 .align 2
 main_trampoline:
-    push r14
+	push r14
 
-    // call C function
-    bl hooked_main
+	// call C function
+	bl hooked_main
 
-    // overwritten code for the hook
-    ldr	r0,=0x03006824|1
-    mov	r14,r15
-    bx	r0
+	// overwritten code for the hook
+	ldr	r0,=0x03006824|1
+	mov	r14,r15
+	bx	r0
 
-    pop r15
-    
+	pop r15
+
 .pool
 .importlib LIB_IN
 .close
