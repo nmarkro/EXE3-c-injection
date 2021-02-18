@@ -16,17 +16,17 @@ INCLUDES	:=	include
 
 ROM_IN 		:= 	rom.gba
 ROM_OUT 	:= 	out_$(TARGET).gba
-LIB_OUT 	= 	$(LIB_DIR)/lib$(TARGET).a
+LIB_OUT		=	$(LIB_DIR)/lib$(TARGET).a
 
-PREFIX 		:= 	arm-none-eabi
+PREFIX		:= 	arm-none-eabi
 CC			:= 	$(PREFIX)-gcc
-LD 			:= 	$(PREFIX)-gcc
+LD			:= 	$(PREFIX)-gcc
 
 AS			:= 	tools/armips.exe
 
 LIBDIRS		:= 	$(DEVKITPRO)/libgba
 LIBS		:= 	-lgba
-LIBPATHS 	:=  $(foreach dir,$(LIBDIRS),-L$(dir)/lib)
+LIBPATHS 	:=	$(foreach dir,$(LIBDIRS),-L$(dir)/lib)
 
 INCLUDE		:=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
 					$(foreach dir,$(LIBDIRS),-I$(dir)/include) \
@@ -35,7 +35,7 @@ INCLUDE		:=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
 ARCH   		:= 	-mthumb -mthumb-interwork
 CFLAGS 		:= 	$(ARCH) -Os -g -Wall -mtune=arm7tdmi -mcpu=arm7tdmi -fomit-frame-pointer -ffast-math -mlong-calls $(INCLUDE)
 LDFLAGS 	:= 	-r -g $(ARCH)
-ASFLAGS 	:=  -strequ ROM_IN "$(ROM_IN)" -strequ ROM_OUT "$(ROM_OUT)" -strequ LIB_IN "$(LIB_OUT)" -root $(CURDIR)
+ASFLAGS 	:=	-strequ ROM_IN "$(ROM_IN)" -strequ ROM_OUT "$(ROM_OUT)" -strequ LIB_IN "$(LIB_OUT)" -root $(CURDIR)
 
 ASM_LINK	= 	link.asm
 

@@ -9,12 +9,12 @@
 
 // hook end of main function to call our c function
 .org addr_main_hook
-    dw main_trampoline|1
+	dw main_trampoline|1
 
 // Reset RNG on soft reset
 .org addr_rng_hook
-	ldr r0,=ResetRngIndex|1
-	bx r0
+	ldr	r0,=ResetRngIndex|1
+	bx	r0
 	.pool
 
 // Increase RNG index and delta
@@ -66,11 +66,11 @@ UpdateRngIndex:
 	push r14
 
 	// pass RNG address (which is in r7 currently) as param to hooked_rng
-	mov r0, r7
-	bl hooked_rng
+	mov	r0, r7
+	bl	hooked_rng
 
 	// overwritten normal RNG function
-	ldr r0, [r7]
+	ldr	r0, [r7]
 	ldr	r1,=0x873CA9E5
 	lsl	r2,r0,0x1
 	lsr	r3,r0,0x1F
@@ -85,14 +85,14 @@ main_trampoline:
 	push r14
 
 	// call C function
-	bl hooked_main
+	bl	hooked_main
 
 	// overwritten code for the hook
 	ldr	r0,=0x03006824|1
 	mov	r14,r15
 	bx	r0
 
-	pop r15
+	pop	r15
 
 .pool
 .importlib LIB_IN
