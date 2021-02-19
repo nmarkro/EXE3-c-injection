@@ -3,7 +3,7 @@
 
 void input_update(void)
 {
-    short pad = (input_pad & 0x03ff) ^ 0x03ff;
+    short pad = input_pad;
     exe3.joypad.keys_released = pad ^ exe3.joypad.raw_pad;
 
     exe3.joypad.raw_pad = pad;

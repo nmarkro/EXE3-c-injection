@@ -3,7 +3,7 @@
 // write characters to BG 0
 void print_char(int x, int y, char chr)
 {
-    short *tilemap = g_Toolkit[23];
+    short *tilemap = g_Toolkit.ptr_5C;
     // force uppercase
     if (chr < 0x61 || chr > 0x7E)
     {
@@ -12,11 +12,9 @@ void print_char(int x, int y, char chr)
         chr -= 0x20;
         // check special characters
         if(chr < 0x20 || chr > 0x5B)
-        {
             return;
-        } else {
+        else
             chr -= 0x20;
-        }
     }
 
     if (chr != 0)
@@ -34,13 +32,13 @@ void int_to_hex(char* buf, unsigned int value, int digits)
         // lmao
         place = (digits - (i + 1)) << 2;
         chr = (value & (0xF << place)) >> place;
+
         // convert A-F to correct letters
         if (chr >= 0xA) 
-        {
             chr += 0x07;
-        }
         // convert to character index
         chr += 0x30;
+
         buf[i] = chr;
     }
 }
@@ -55,9 +53,8 @@ int int_to_dec(char* buf, unsigned int value, int digits)
     for(int i = 0; i < digits; i++)
     {
         if (value == 0)
-        {
             break;
-        }
+
         // get the rightmost digit and discard it from the value
         chr = DivMod(value, 10);
         value = Div(value, 10);
@@ -77,21 +74,15 @@ int int_to_dec(char* buf, unsigned int value, int digits)
 
     // reverse buffer
     for (int i = 0; i < size; i++)
-    {
         buf[i] = temp_buf[size - (i + 1)];
-    }
 
     return size;
 }
 
 struct TextPos draw_text(struct TextPos pos, char str[], int length)
 {
-    for(int i = 0; i < length; i++)
+    for(int i = 0; i < length && str[i] != '\0'; i++)
     {
-        if (str[i] == '\0')
-        {
-            break;
-        }
         print_char(pos.x, pos.y, str[i]);
         pos.x++;
         if (pos.x > WIDTH)

@@ -3,14 +3,6 @@
 #include "input.h"
 #include "text.h"
 
-struct Joypad
-{
-    short raw_pad;
-    int button_time[10];
-    short keys_pressed;
-    short keys_released;
-};
-
 struct RNG 
 {
     unsigned int value;
