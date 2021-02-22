@@ -52,10 +52,13 @@ void hooked_main(void)
 
     if (exe3.menu_active)
     {
-        draw_var_dec((struct TextPos) {1, 1},   "RNG1Idx: ",    rng1.index);
-        draw_var_dec((struct TextPos) {1, 2},   "RNG1Delta: ",  rng1.delta);
-        draw_var_dec((struct TextPos) {1, 3},   "RNG2Idx: ",    rng2.index);
-        draw_var_dec((struct TextPos) {1, 4},   "RNG2Delta: ",  rng2.delta);
+        draw_textf(1, 1, "RNG1Value: %x",   rng1.value, 8);
+        draw_textf(1, 2, "RNG1Idx:   %d",   rng1.index, 8);
+        draw_textf(1, 3, "RNG1Delta: %d",   rng1.delta, 8);
+
+        draw_textf(1, 4, "RNG2Value: %X",   rng2.value, 8);
+        draw_textf(1, 5, "RNG2Idx:   %D",   rng2.index, 8);
+        draw_textf(1, 6, "RNG2Delta: %D",   rng2.delta, 8);
     }
 
     // reset the RNG deltas at the end of every frame

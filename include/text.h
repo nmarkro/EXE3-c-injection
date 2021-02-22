@@ -1,5 +1,6 @@
 #ifndef TEXT_H
 #define TEXT_H
+#include <string.h>
 #include <gba_systemcalls.h>
 #include "toolkit.h"
 
@@ -7,15 +8,7 @@
 #define WIDTH 32
 #define HEIGHT 14
 
-struct TextPos
-{
-    int x, y;
-};
-
-void int_to_hex(char* buf, unsigned int value, int digits);
-int int_to_dec(char* buf, unsigned int value, int digits);
-struct TextPos draw_text(struct TextPos pos, char str[], int length);
-void draw_var(struct TextPos pos, char str[], int var);
-void draw_var_dec(struct TextPos pos, char str[], int var);
+void draw_textf(int x, int y, char *text, int value, int size_of_value);
+void draw_text(int x, int y, char *text);
 
 #endif

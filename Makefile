@@ -25,7 +25,7 @@ LD			:= 	$(PREFIX)-gcc
 AS			:= 	tools/armips.exe
 
 LIBDIRS		:= 	$(DEVKITPRO)/libgba
-LIBS		:= 	-lgba
+LIBS		:= 	-lgba -lc
 LIBPATHS 	:=	$(foreach dir,$(LIBDIRS),-L$(dir)/lib)
 
 INCLUDE		:=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
